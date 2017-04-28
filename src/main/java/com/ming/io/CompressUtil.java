@@ -8,8 +8,6 @@ import java.io.OutputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import com.ming.crypto.EncryptionUtil;
-
 public class CompressUtil {
 
 	private static void close(OutputStream os) throws IOException {
@@ -58,13 +56,4 @@ public class CompressUtil {
 		}
 	}
 
-	public static void main(String[] args) throws Throwable {
-		String str = "hello world";
-		byte[] encrpt = EncryptionUtil.encrpt("str", "1234567890123456", "1234567890123456");
-
-		byte[] gzip = gzip(encrpt);
-		System.out.println(gzip);
-		byte[] encrpt2 = unGzip(gzip);
-
-	}
 }
