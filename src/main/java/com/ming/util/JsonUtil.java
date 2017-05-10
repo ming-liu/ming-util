@@ -5,11 +5,15 @@ import com.google.gson.GsonBuilder;
 
 public class JsonUtil {
 	private static Gson gson = null;
-	static{
+	static {
 		gson = new GsonBuilder().setDateFormat(DateUtil.DEFAULT).create();
 	}
-	
-	public static String toJson(Object obj){
+
+	public static String toJson(Object obj) {
 		return gson.toJson(obj);
+	}
+
+	public static <T> T fromJson(String json, Class<T> classOfT) {
+		return gson.fromJson(json, classOfT);
 	}
 }
