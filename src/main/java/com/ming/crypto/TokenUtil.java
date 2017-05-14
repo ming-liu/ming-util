@@ -29,6 +29,11 @@ public class TokenUtil {
 		byte[] bytes = HexString.converHexStr2Bytes(token);
 		return EncryptionUtil.decrptToStr(bytes, key, iv);
 	}
+	
+	public static String parseToken(String token, String key, String iv) {
+		byte[] bytes = HexString.converHexStr2Bytes(token);
+		return EncryptionUtil.decrptToStr(bytes, key, iv);
+	}
 
 	public static void main(String[] args) throws Exception {
 		System.out.println(parseToken(generateToken("1|234567890|_|abcdefghijklmnopqrstuvwxyz-ABCDEFGHIJKLMNOPQRSTUVWXYZ")));
