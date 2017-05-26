@@ -4,8 +4,15 @@ import java.io.OutputStream;
 
 public interface Serializer {
 
-	byte[] serialize(Object o);
+	// to byte array
+	byte[] serialize(Object o) throws SerializeException;
 
-	void serializeRequest(OutputStream os, Object obj) throws SerializationException;
+	// to String
+	String serializeToString(Object o) throws SerializeException;
+
+	<T> T deserializeFromString(String value, Class<T> clazz) throws SerializeException;
+	
+	//
+	void serializeRequest(OutputStream os, Object obj) throws SerializeException;
 
 }
