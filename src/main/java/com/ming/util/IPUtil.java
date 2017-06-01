@@ -27,5 +27,9 @@ public class IPUtil {
 		long int1 = toInt("192.133.22.2");
 		System.out.println(int1);
 		System.out.println(toString(int1));
+		
+		String string = toString(3229970266l);
+		System.out.println(string);
+		System.out.println(toInt(string));
 	}
 }
