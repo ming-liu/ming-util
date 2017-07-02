@@ -16,8 +16,8 @@ import javax.imageio.ImageIO;
 
 public class SimpleCaptcha {
 
-	// 去掉01iloO
-	public static char[] table = "23456789abcdefghjkmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ".toCharArray();
+	// 去掉01ilowOW
+	public static char[] table = "23456789abcdefghjkmnpqrstuvxyzABCDEFGHIJKLMNPQRSTUVXYZ".toCharArray();
 	public static int tableLength = table.length;
 
 	private static int getRandomIntColor(int fc, int bc) {
@@ -67,11 +67,12 @@ public class SimpleCaptcha {
 		graphics.fillRect(0, 2, width, height - 4);
 		// 绘制干扰线
 		graphics.setColor(getRandColor(160, 200));// 设置线条的颜色
+		boolean lineDirect = random.nextBoolean();
 		for (int i = 0; i < 20; i++) {
 			int x = random.nextInt(width - 1);
 			int y = random.nextInt(height - 1);
-			int xl = random.nextInt(6) + 1;
-			int yl = random.nextInt(12) + 1;
+			int xl = random.nextInt(lineDirect ? 6 : 12) + 1;
+			int yl = random.nextInt(lineDirect ? 12 : 6) + 1;
 			graphics.drawLine(x, y, x + xl + width / 2, y + yl + height / 2);
 		}
 
@@ -84,6 +85,7 @@ public class SimpleCaptcha {
 			image.setRGB(x, y, getRandomIntColor(0, 255));
 		}
 
+		boolean rotation = random.nextInt(4) != 0;// 25%的概率不选转
 		graphics.setFont(new Font("Algerian", Font.PLAIN, fontSize));
 		graphics.setColor(getRandColor(100, 160));
 		for (int i = 0; i < length; i++) {
@@ -91,9 +93,11 @@ public class SimpleCaptcha {
 				graphics.drawChars(code, i, 1, ((width - 10) / length) * i + 2, height / 2 + fontSize / 2 - 5);
 				break;
 			}
-			AffineTransform affine = new AffineTransform();
-			affine.setToRotation(Math.PI / 8 * random.nextDouble() * (random.nextBoolean() ? 1 : -1), (width / length) * i + fontSize / 2, height / 2);
-			graphics.setTransform(affine);
+			if (rotation) {
+				AffineTransform affine = new AffineTransform();
+				affine.setToRotation(Math.PI / 9 * random.nextDouble() * (random.nextBoolean() ? 1 : -1), (width / length) * i + fontSize / 2, height / 2);
+				graphics.setTransform(affine);
+			}
 			if (i == 0) {
 				graphics.drawChars(code, i, 1, 2, height / 2 + fontSize / 2 - 10);
 			} else {
