@@ -20,12 +20,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table GdCity
+# Dump of table City
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `GdCity`;
+DROP TABLE IF EXISTS `City`;
 
-CREATE TABLE `GdCity` (
+CREATE TABLE `City` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `citycode` varchar(16) NOT NULL DEFAULT '' COMMENT '城市代码',
   `adcode` varchar(16) NOT NULL DEFAULT '' COMMENT ' 上一层城市代码',
@@ -34,13 +34,14 @@ CREATE TABLE `GdCity` (
   `updateAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `level` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '级别',
   `status` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '0,未开通;1已开通',
+  `pinyin` varchar(128) NOT NULL DEFAULT '' COMMENT '汉语拼音',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='GdCity';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='City';
 
-LOCK TABLES `GdCity` WRITE;
-/*!40000 ALTER TABLE `GdCity` DISABLE KEYS */;
+LOCK TABLES `City` WRITE;
+/*!40000 ALTER TABLE `City` DISABLE KEYS */;
 
-INSERT INTO `GdCity` (`id`, `citycode`, `adcode`, `name`, `createAt`, `updateAt`, `level`, `status`)
+INSERT INTO `City` (`id`, `citycode`, `adcode`, `name`, `createAt`, `updateAt`, `level`, `status`)
 VALUES
 	(1,'','100000','中华人民共和国','2017-10-28 16:54:43','2017-10-28 16:54:43',0,0),
 	(2,'010','110000','北京市','2017-10-28 16:54:43','2017-10-28 16:54:43',1,1),
@@ -3280,7 +3281,7 @@ VALUES
 	(3236,'0933','620802','崆峒区','2017-10-28 16:54:50','2017-10-28 16:54:50',5,0),
 	(3237,'0933','620821','泾川县','2017-10-28 16:54:50','2017-10-28 16:54:50',4,1);
 
-INSERT INTO `GdCity` (`id`, `citycode`, `adcode`, `name`, `createAt`, `updateAt`, `level`, `status`)
+INSERT INTO `City` (`id`, `citycode`, `adcode`, `name`, `createAt`, `updateAt`, `level`, `status`)
 VALUES
 	(3238,'0933','620822','灵台县','2017-10-28 16:54:50','2017-10-28 16:54:50',4,1),
 	(3239,'0933','620823','崇信县','2017-10-28 16:54:50','2017-10-28 16:54:50',4,1),
@@ -3584,7 +3585,7 @@ VALUES
 	(3537,'1853','820008','圣方济各堂区','2017-10-28 16:54:50','2017-10-28 16:54:50',4,0),
 	(3538,'1900','900000','外国','2017-10-28 16:54:50','2017-10-28 16:54:50',0,0);
 
-/*!40000 ALTER TABLE `GdCity` ENABLE KEYS */;
+/*!40000 ALTER TABLE `City` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
